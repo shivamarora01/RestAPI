@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import  ProductOverviewTwo  from './compo/Card'
 
 function App() {
   const [carData,setCarData] = useState(null)
@@ -23,7 +24,7 @@ function App() {
   if(isButtonClicked === true || isButtonClicked2 === true){
     fetchData();
   }
-  }, [isButtonClicked])
+  }, [isButtonClicked,isButtonClicked2])
   const handleButtonfnc = () => {
     if(isButtonClicked === false){
       setButtonClicked(true)
@@ -33,11 +34,21 @@ function App() {
       setCarData(null)
     }
   }
+  const handleButtonfnc2 = () => {
+    if(isButtonClicked2 === false){
+      setButtonClicked2(true)
+    }
+    else{
+      setButtonClicked2(false)
+      setCarData(null)
+    }
+  }
+  const brand = carData? carData.find((car)=> car.id === 2).Brand:null;
 
   return (
     <>
      <div className="app">
-      <button onClick={handleButtonfnc} >Cars Brand</button>
+      <button onClick={handleButtonfnc} className='bg-green-500' >Cars Brand</button>
       <ul>
         {carData && carData.map(car => (
           <li key = {car.id}>
@@ -46,6 +57,17 @@ function App() {
         ))}
       </ul>
      </div>
+     <div className="app">
+      <button onClick={handleButtonfnc2} className='bg-red-700' >Cars Model</button>
+      <ul>
+        {carData && carData.map(car => (
+          <li key = {car.id}>
+            <h3>{car.Model}</h3>
+          </li>
+        ))}
+      </ul>
+     </div>
+     <ProductOverviewTwo Brand = {brand}/>
     </>
   )
 }
