@@ -25,11 +25,11 @@ useEffect(()=>{
   return (
     <>
       <div className="app">
-        <h1>JSON DATA</h1>
         <ul>
           { jsonData && jsonData.map(user => (
-            <li key={user.id}>
-              <strong>{user.first_name} {user.last_name}</strong>
+            <li key={user.idCategory}>
+              <strong>{user.strCategory}</strong>
+              <button>Add cart</button>
             </li>
           ))}
         </ul>
